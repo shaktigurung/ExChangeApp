@@ -1,15 +1,31 @@
 <p id="notice"><%= notice %></p>
-<div class= "container">
+<div class = "container">
 <div class="row">
   <div class="col-md-12">
     <h1>Welcome To ExChange</h1>
-    <h3><strong>Swap what you don't like with what you love </strong> </h3>
+    <h3><strong>Swap what you don't like with what you love </strong> </h3><br>
   </div>
 </div>
 </div>
 <div class="row">
 <div class="col-md-12">
-<table>
+    <% @products.each do |product| %>
+    <div class="col-md-4">
+        <%= image_tag product.image_url(:thumb) %> <br>
+      <h2> <%= product.name %><br></h2>
+        <%= product.description %><br>
+        <%= product.price %><br>
+        <% if user_signed_in? && current_user.id == product.user_id %>
+        <td><%= link_to 'Show', product %></td>
+        <td><%= link_to 'Edit', edit_product_path(product) %></td>
+        <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% else %>
+        <td><%= link_to 'Show', product %></td>
+        <td><%= link_to 'Submit Offer', product %></td>
+         <%end%>
+    </div>
+    <% end %>
+<!-- # <table>
   <thead>
     <tr>
       <th>Name</th>
@@ -38,13 +54,13 @@
       </tr>
     <% end %>
   </tbody>
-</table>
+</table> -->
 </div>
 </div>
 <br>
 
 <% if user_signed_in? %>
-<%= link_to 'New Product', new_product_path %>
+<%= link_to 'Add New Product', new_product_path %>
 <% else %>
 <%= link_to 'Sign In To Add Products', new_product_path %>
 <% end%>
