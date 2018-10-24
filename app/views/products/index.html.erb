@@ -1,8 +1,14 @@
 <p id="notice"><%= notice %></p>
-
-<h1>Welcome To ExChange</h1>
-<h3><strong>Swap what you don't like with what you love </strong> </h3>
-<div>
+<div class= "container">
+<div class="row">
+  <div class="col-md-12">
+    <h1>Welcome To ExChange</h1>
+    <h3><strong>Swap what you don't like with what you love </strong> </h3>
+  </div>
+</div>
+</div>
+<div class="row">
+<div class="col-md-12">
 <table>
   <thead>
     <tr>
@@ -34,6 +40,7 @@
   </tbody>
 </table>
 </div>
+</div>
 <br>
 
 <% if user_signed_in? %>
@@ -41,3 +48,4 @@
 <% else %>
 <%= link_to 'Sign In To Add Products', new_product_path %>
 <% end%>
+</div>
