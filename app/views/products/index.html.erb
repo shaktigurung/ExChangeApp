@@ -1,7 +1,8 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Products</h1>
-
+<h1>Welcome To ExChange</h1>
+<h3><strong>Swap what you don't like with what you love </strong> </h3>
+<div>
 <table>
   <thead>
     <tr>
@@ -18,7 +19,7 @@
       <tr>
         <td><%= product.name %></td>
         <td><%= product.description %></td>
-        <td><%= product.image %></td>
+        <td><%= image_tag product.image_url(:thumb) %></td>
         <td><%= product.price %></td>
         <% if user_signed_in? && current_user.id == product.user_id %>
         <td><%= link_to 'Show', product %></td>
@@ -32,7 +33,11 @@
     <% end %>
   </tbody>
 </table>
-
+</div>
 <br>
 
+<% if user_signed_in? %>
 <%= link_to 'New Product', new_product_path %>
+<% else %>
+<%= link_to 'Sign In To Add Products', new_product_path %>
+<% end%>
